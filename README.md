@@ -1,7 +1,7 @@
 # WP-Server-Installation
-Following is a tutorial last updated on October 10, 2020 to install a Latest configuration WordPress Server with latest of Nginx, MariaDB, PHP-7.4, Redis & Let'sEncrypt SSL certbot on Ubuntu 20.04 LTS virtual machine.
+Following is a tutorial last updated on **October 10, 2020** to install a Latest configuration **WordPress** Server with latest of **Nginx, MariaDB, PHP-7.4, Redis & Let'sEncrypt SSL certbot** on **Ubuntu 20.04 LTS** virtual machine.
 
-To try this Tutorial you can get a Virtual Server from DigitalOcean
+To try this Tutorial you can get a Virtual Server from **DigitalOcean**
 
 [Get a $100 credit to try using our affiliate link](https://m.do.co/c/07aaa6a113b1) 
 
@@ -37,19 +37,20 @@ $ cat /proc/meminfo
 
 `$ apt-get install -y git curl apt-transport-https`
 
-## 5. Install Nginx Server - for Ubuntu 20.04 - Instructions from site - http://nginx.org/en/linux_packages.html#Ubuntu
+## 5. Install Nginx Server 
+Nginx server is available in the Ubuntu repo but it is _not_ the latest version.😏
+
+Currently latest Nginx version is 1.18.0 in stable.
+
+To install latest version for Ubuntu 20.04; it is recommended to refer instructions from site - http://nginx.org/en/linux_packages.html#Ubuntu
+
 Install the prerequisites:
 
 `$ sudo apt install curl gnupg2 ca-certificates lsb-release`
 
-To set up the apt repository for stable nginx packages, run the following command: - Recommended
+To set up the apt repository for stable nginx packages, run the following command
 
 `$ echo "deb http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" \`
-`	        | sudo tee /etc/apt/sources.list.d/nginx.list`
-
-If you would like to use mainline nginx packages, run the following command instead:
-
-`$ echo "deb http://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx" \`
 `	        | sudo tee /etc/apt/sources.list.d/nginx.list`
 
 Next, import an official nginx signing key so apt could verify the packages authenticity:
@@ -79,9 +80,12 @@ Gives output
 	
 `nginx version: nginx/1.18.0`
 
-Latest Stable Nginx is installed now 
+Latest Stable Nginx is installed now 👍
 
 ## 6. Installing PHP 7.4 
+
+Include Ondrej Repo for latest PHP 7.4 packages
+
 Repo page is - https://launchpad.net/~ondrej/+archive/ubuntu/php
 
 `$ sudo add-apt-repository ppa:ondrej/php`
@@ -91,7 +95,12 @@ Repo page is - https://launchpad.net/~ondrej/+archive/ubuntu/php
 `$ sudo apt-get install php7.4-cli php7.4-curl php7.4-mysql php7.4-fpm php7.4-gd php7.4-xml php7.4-mbstring php7.4-zip php7.4-soap php7.4-dev `
 
 ## 7. Update Nginx to work with PHP-7.4
-First, edit the default configuration: 
+
+First, edit the default nginx configuration: 
+
+Default nginx configuration is stored in **/etc/nginx/nginx.conf** file
+
+I use nano over vim, not a nerd yet🤓 
 
 `$ nano /etc/nginx/nginx.conf`
 
